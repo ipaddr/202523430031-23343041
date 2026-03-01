@@ -5,7 +5,6 @@ import 'package:flutterdemo/firebase_options.dart';
 import 'package:flutterdemo/views/login_view.dart';
 import 'package:flutterdemo/views/register_view.dart';
 import 'package:flutterdemo/views/verify_email_views.dart';
-import 'dart:developer' as devtools show log;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,8 +14,8 @@ void main() {
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const HomePage(),
       routes: {
-        '/login/': (context) => const Loginview(),
-        '/register/': (context) => const Registerview(),
+        '/login/': (context) => const LoginView(),
+        '/register/': (context) => const RegisterView(),
         '/verify-email/': (context) => const VerifyEmailView(),
         '/notes/': (context) => const NotesView(),
       },
@@ -44,7 +43,7 @@ class HomePage extends StatelessWidget {
                 return const VerifyEmailView();
               }
             } else {
-              return const Loginview();
+              return const LoginView();
             }
           default:
             return const CircularProgressIndicator();

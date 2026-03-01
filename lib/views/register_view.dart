@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as devtools show log;
 
-class Registerview extends StatefulWidget {
-  const Registerview({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({Key? key}) : super(key: key);
 
   @override
-  State<Registerview> createState() => _RegisterviewState();
+  _RegisterViewState createState() => _RegisterViewState();
 }
 
-class _RegisterviewState extends State<Registerview> {
+class _RegisterViewState extends State<RegisterView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -60,18 +61,14 @@ class _RegisterviewState extends State<Registerview> {
                       email: email,
                       password: password,
                     );
-                await userCredential.user?.sendEmailVerification();
-                if (!mounted) return;
-                Navigator.of(
-                  context,
-                ).pushNamedAndRemoveUntil('/verify-email/', (_) => false);
+                devtools.log(userCredential.toString());
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'weak-password') {
-                  print('The password provided is too weak.');
+                  devtools.log('Weak password');
                 } else if (e.code == 'email-already-in-use') {
-                  print('The account already exists for that email.');
+                  devtools.log('Email is already in use');
                 } else if (e.code == 'invalid-email') {
-                  print('invalid email entered');
+                  devtools.log('invalid email entered');
                 }
               }
             },
@@ -79,7 +76,9 @@ class _RegisterviewState extends State<Registerview> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context).pushNamed('/login/');
+              Navigator.of(
+                context,
+              ).pushNamedAndRemoveUntil('/login/', (route) => false);
             },
             child: const Text('Already registered? Login here!'),
           ),
