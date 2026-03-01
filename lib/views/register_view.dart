@@ -30,12 +30,16 @@ class _RegisterviewState extends State<Registerview> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          controller: _email,
-          enableSuggestions: false,
-          autocorrect: false,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Register'),
+      ),
+      body: Column(
+        children: [
+          TextField(
+            controller: _email,
+            enableSuggestions: false,
+            autocorrect: false,
           keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(hintText: 'Enter your email here'),
         ),
@@ -71,7 +75,8 @@ class _RegisterviewState extends State<Registerview> {
           },
           child: const Text('Register'),
         ),
-      ],
+        ],
+      ),
     );
   }
 }

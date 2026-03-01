@@ -28,12 +28,16 @@ class _LoginviewState extends State<Loginview> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          controller: _email,
-          enableSuggestions: false,
-          autocorrect: false,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
+      body: Column(
+        children: [
+          TextField(
+            controller: _email,
+            enableSuggestions: false,
+            autocorrect: false,
           keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(hintText: 'Enter your email here'),
         ),
@@ -64,7 +68,14 @@ class _LoginviewState extends State<Loginview> {
           },
           child: const Text('Login'),
         ),
-      ],
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed('/register/');
+          },
+          child: const Text('Not registered yet? Register here!'),
+        ),
+        ],
+      ),
     );
   }
 }
