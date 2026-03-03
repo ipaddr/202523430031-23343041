@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/constants/routes.dart';
 import 'package:flutterdemo/utilities/show_error_dialog.dart';
@@ -63,10 +64,12 @@ class _LoginViewState extends State<LoginView> {
                 );
                 final user = FirebaseAuth.instance.currentUser;
                 if (user?.emailVerified ?? false) {
+                  // user's email is verified
                   Navigator.of(
                     context,
                   ).pushNamedAndRemoveUntil(notesRoute, (route) => false);
                 } else {
+                  // user's email is NOT verified
                   Navigator.of(
                     context,
                   ).pushNamedAndRemoveUntil(verifyEmailRoute, (route) => false);
