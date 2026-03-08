@@ -6,6 +6,7 @@ import 'package:flutterdemo/services/auth/bloc/auth_bloc.dart';
 import 'package:flutterdemo/services/auth/bloc/auth_event.dart';
 import 'package:flutterdemo/services/auth/bloc/auth_state.dart';
 import 'package:flutterdemo/services/auth/firebase_auth_provider.dart';
+import 'package:flutterdemo/views/forgot_password_view.dart';
 import 'package:flutterdemo/views/login_view.dart';
 import 'package:flutterdemo/views/notes/create_update_note_view.dart';
 import 'package:flutterdemo/views/notes/notes_view.dart';
@@ -53,6 +54,8 @@ class HomePage extends StatelessWidget {
           return const VerifyEmailView();
         } else if (state is AuthStateLoggedOut) {
           return const LoginView();
+        } else if (state is AuthStateForgotPassword) {
+          return const ForgotPasswordView();
         } else if (state is AuthStateRegistering) {
           return const RegisterView();
         } else {
